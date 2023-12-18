@@ -98,7 +98,7 @@ if st.button("기사 파일 생성하기"):
         plt.savefig('graph.png')
         st.session_state['image']=1
         st.write(st.session_state['image'])
-    if 'image' is in st.session_state:
+    if 'image' in st.session_state:
         doc.add_picture('graph.png', width=Inches(6))
     
     doc.add_paragraph(article)
