@@ -93,7 +93,7 @@ st.subheader("자료를 바탕으로 기사를 작성해봅시다.")
 article = st.text_area("기사를 작성하세요.", height=200)
 
 if st.button("기사 파일 생성하기"):
-    doc = Document()  # Create an empty docx file
+    doc = docx.Document()    # Create an empty docx file
 
     if graph_selected_opt != "그래프 선택하기":
         # Plot the graph
