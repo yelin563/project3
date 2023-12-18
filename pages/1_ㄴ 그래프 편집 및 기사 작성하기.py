@@ -99,7 +99,7 @@ if st.button("기사 파일 생성하기"):
         st.session_state['image']=1
         st.write(st.session_state['image'])
     if 'image' in st.session_state:
-        st.write(st.session_state['image'])
+        st.write('세션')
         doc.add_picture('graph.png', width=Inches(6))
     
     doc.add_paragraph(article)
