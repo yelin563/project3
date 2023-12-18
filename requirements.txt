@@ -1,0 +1,11 @@
+streamlit==1.27.0
+pandas
+folium==0.14.0
+matplotlib
+streamlit_folium==0.15.0
+koreanize-matplotlib
+xlsxwriter
+openpyxl==3.1.2
+python-docx
+docx2txt
+Pillow
