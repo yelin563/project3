@@ -96,13 +96,11 @@ if st.button("기사 파일 생성하기"):
     doc = docx.Document()    # Create an empty docx file
 
     if graph_selected_opt != "그래프 선택하기":
-        # Plot the graph
-        
-        fig = plt.gcf()
+       
 
         # Convert Matplotlib figure to an image in memory
         buf = io.BytesIO()
-        FigureCanvasAgg(fig).print_png(buf)
+        FigureCanvasAgg(fig_sel).print_png(buf)
         buf.seek(0)
 
         # Add the image to the Word document
