@@ -8,6 +8,7 @@ import base64
 import io
 import docx
 from docx.shared import Inches
+from matplotlib.backends.backend_agg import FigureCanvasAgg
 
 #session_state에서 호출
 df = st.session_state['df']
@@ -92,24 +93,29 @@ st.subheader("자료를 바탕으로 기사를 작성해봅시다.")
 article = st.text_area("기사를 작성하세요.", height=200)
 
 if st.button("기사 파일 생성하기"):
-    doc = docx.Document()         # 비어있는 docx 파일 생성
-    if graph_selected_opt != "그래프 선택하기":        # 그래프가 그려져 있으면 그래프를 저장하여 doc 파일에 추가
-        plt.show()
-        plt.savefig('graph.png')
-        st.session_state['image']=1
-        
-    if 'image' in st.session_state:
-        
-        doc.add_picture('graph.png', width=Inches(6))
-    
+    doc = Document()  # Create an empty docx file
+
+    if graph_selected_opt != "그래프 선택하기":
+        # Plot the graph
+        plt.plot([1, 2, 3, 4], [10, 20, 25, 30])  # Replace with your actual plot
+        fig = plt.gcf()
+
+        # Convert Matplotlib figure to an image in memory
+        buf = io.BytesIO()
+        FigureCanvasAgg(fig).print_png(buf)
+        buf.seek(0)
+
+        # Add the image to the Word document
+        doc.add_picture(buf, width=Inches(6))
+
     doc.add_paragraph(article)
-    
-    # MS Word 파일 생성
+
+    # MS Word file creation
     file_data = io.BytesIO()
     doc.save(file_data)
     file_data.seek(0)
 
-    # MS Word 파일 다운로드 링크 생성
+    # MS Word file download link
     b64_txt = base64.b64encode(file_data.getvalue()).decode()
     href = f'<a href="data:application/octet-stream;base64,{b64_txt}" download="article.docx">MS Word 파일로 다운로드하기</a>'
     st.markdown(href, unsafe_allow_html=True)
