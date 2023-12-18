@@ -97,7 +97,7 @@ if st.button("기사 파일 생성하기"):
 
     if graph_selected_opt != "그래프 선택하기":
         # Plot the graph
-        plt.plot([1, 2, 3, 4], [10, 20, 25, 30])  # Replace with your actual plot
+        
         fig = plt.gcf()
 
         # Convert Matplotlib figure to an image in memory
