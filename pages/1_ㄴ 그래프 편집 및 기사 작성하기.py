@@ -97,6 +97,7 @@ if st.button("기사 파일 생성하기"):
         plt.show()
         plt.savefig('graph.png')
         doc.add_picture('graph.png', width=Inches(6))
+        st.write("그림이 생성되었습니다")
     doc.add_paragraph(article)
     
     # MS Word 파일 생성
