@@ -96,8 +96,11 @@ if st.button("기사 파일 생성하기"):
     if graph_selected_opt != "그래프 선택하기":        # 그래프가 그려져 있으면 그래프를 저장하여 doc 파일에 추가
         plt.show()
         plt.savefig('graph.png')
-    doc.add_picture('graph.png', width=Inches(6))
-    st.write("그림이 생성되었습니다")
+        st.session_state['image']=1
+        st.write(st.session_state['image'])
+    if 'image' is in st.session_state:
+        doc.add_picture('graph.png', width=Inches(6))
+    
     doc.add_paragraph(article)
     
     # MS Word 파일 생성
